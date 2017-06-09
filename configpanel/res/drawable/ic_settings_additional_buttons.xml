@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-   Copyright (c) 2016 The CyanogenMod Project
+   Copyright (c) 2017 mj1687 alessandro.pasini12@gmail.com
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -15,13 +15,17 @@
    limitations under the License.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-   android:width="24dp"
-   android:height="24dp"
-   android:viewportWidth="24"
-   android:viewportHeight="24">
-
+    android:width="24dp"
+    android:height="24dp"
+	android:viewportWidth="24"
+    android:viewportHeight="24">
     <path
-       android:fillColor="@android:color/white"
-       android:pathData="M17,1L7,1C5.9,1,5,1.9,5,3v2h2v4H5v12c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V3C19,1.9,18.1,1,17,1z
-M11,21H7v-2h4V21z M17,21 h-4v-2h4V21z" />
+        android:pathData="M3 500C3 225.69824 225.69824 3 500 3 774.30176 3 997 225.69824 997 500 997 774.30176 774.30176 997 500 997 225.69824 997 3 774.30176 3 500Zm175.28188 -38l643.43624 0c6.98552 0 12.65688 5.67136 12.65688 12.65688l0 50.68624C834.375 532.32864 828.70364 538 821.71812 538l-643.43624 0c-6.98552 0 -12.65688 -5.67136 -12.65688 -12.65688l0 -50.68624C165.625 467.67136 171.29636 462 178.28188 462Z"
+        android:fillType="evenOdd"
+        android:fillColor="@color/theme_accent"
+        android:strokeMiterLimit="10" />
+    <path
+        android:pathData="M476.29269 470l277.41462 0C761.59566 470 768 476.4453 768 484.38411l0 30.23178C768 522.5547 761.59566 529 753.70731 529l-277.41462 0C468.40434 529 462 522.5547 462 514.61589l0 -30.23178C462 476.4453 468.40434 470 476.29269 470Z"
+        android:fillColor="@color/theme_accent"
+        android:strokeMiterLimit="10" />
 </vector>
