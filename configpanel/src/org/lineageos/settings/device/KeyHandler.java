@@ -18,6 +18,7 @@
 package org.lineageos.settings.device;
 
 import android.Manifest;
+import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -31,9 +32,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.os.UserHandle;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.provider.Settings;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.KeyEvent;
@@ -127,6 +130,7 @@ public class KeyHandler implements DeviceKeyHandler {
                               UserHandle.CURRENT);
                               action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA;
                 }
+                Intent intent = new Intent(action, null);
                 mPowerManager.wakeUp(SystemClock.uptimeMillis(), "wakeup-gesture");
                 mContext.sendBroadcast(intent, Manifest.permission.STATUS_BAR_SERVICE);
                 doHapticFeedback();
@@ -136,7 +140,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private boolean hasSetupCompleted() {
         return Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.USER_SETUP_COMPLETE, 0) != 0;
+                USER_SETUP_COMPLETE, 0) != 0;
     }
 
     public KeyEvent handleKeyEvent(KeyEvent event) {
@@ -167,7 +171,7 @@ public class KeyHandler implements DeviceKeyHandler {
             Message msg = getMessageForKeyEvent(scanCode);
             boolean defaultProximity = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
-            boolean proximityWakeCheckEnabled = Settings.System.System.getInt(
+            boolean proximityWakeCheckEnabled = Settings.System.getInt(
                     mContext.getContentResolver(), Settings.System.PROXIMITY_ON_WAKE,
                     defaultProximity ? 1 : 0) == 1;
             if (mProximityWakeSupported && proximityWakeCheckEnabled && mProximitySensor != null) {
@@ -215,7 +219,7 @@ public class KeyHandler implements DeviceKeyHandler {
             return;
         }
         boolean enabled = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.KEY_GESTURE_HAPTIC_FEEDBACK, 1) != 0;
+                KEY_GESTURE_HAPTIC_FEEDBACK, 1) != 0;
         if (enabled) {
             mVibrator.vibrate(50);
         }
